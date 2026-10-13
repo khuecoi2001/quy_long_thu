@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+<base target="_top">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Quỹ Lông thủ</title>
-<meta name="description" content="Quản lý quỹ CLB cầu lông Lông thủ NSMO">
-<meta name="theme-color" content="#F1F4F0">
-<meta name="color-scheme" content="light dark">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Quỹ Lông thủ">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
@@ -25,6 +16,7 @@
   --fg:#111C16; --fg-2:#34443B; --muted:#5F6E66;
   --accent:#0B7A4B; --accent-strong:#075F3A; --accent-ink:#FFFFFF; --accent-soft:#DCEFE3;
   --hero:#0A4A31; --hero-2:#0D6040; --hero-ink:#F0FAF4; --hero-muted:#A6D4BB; --shuttle:#D8EF5C;
+  --shuttle-ink:#16210A; --fab-glow:rgba(11,122,75,.32);
   --debt:#B53A10; --debt-soft:#FBE8DF; --pos:#0B7A4B; --pos-soft:#DCEFE3;
   --scrim:rgba(8,20,14,.45); --shadow:0 1px 2px rgba(14,32,22,.05),0 10px 30px rgba(14,32,22,.08);
   --focus:#1D6FD1;
@@ -61,6 +53,33 @@
   --av7b:#3C2313;--av7f:#F5B389; --av8b:#232E3A;--av8f:#B7C5D5;
   color-scheme:dark;
 }
+/* Bảng màu xanh dương (khớp biểu tượng app 2 3 dô): <html data-palette="blue"> */
+:root[data-palette="blue"]{
+  --bg:#EEF3F9; --surface-2:#E4EBF4; --line:#D5DFEB;
+  --fg:#0F1A2A; --fg-2:#33445A; --muted:#5B697C;
+  --accent:#1F5FBF; --accent-strong:#174A97; --accent-ink:#FFFFFF; --accent-soft:#DCE7F8;
+  --hero:#173F7A; --hero-2:#1F5099; --hero-ink:#F2F7FF; --hero-muted:#AFC6EA; --shuttle:#FFC94A;
+  --shuttle-ink:#2A1C00; --fab-glow:rgba(31,95,191,.32);
+  --scrim:rgba(8,14,28,.45); --shadow:0 1px 2px rgba(14,24,44,.05),0 10px 30px rgba(14,24,44,.08);
+}
+@media (prefers-color-scheme: dark){:root[data-palette="blue"]:not([data-theme="light"]){
+  --bg:#0A0F17; --surface:#111A26; --surface-2:#182334; --line:#233044;
+  --fg:#E6EDF7; --fg-2:#C0CCDC; --muted:#8C9AAE;
+  --accent:#5B9BF0; --accent-strong:#84B4F5; --accent-ink:#04122A; --accent-soft:#132B4D;
+  --hero:#112B54; --hero-2:#173868; --hero-ink:#EEF4FF; --hero-muted:#A0BAE2; --shuttle:#FFC94A;
+  --shuttle-ink:#2A1C00; --fab-glow:rgba(0,0,0,.4);
+  --scrim:rgba(0,0,0,.62); --shadow:0 1px 0 rgba(255,255,255,.03);
+}}
+:root[data-palette="blue"][data-theme="dark"]{
+  --bg:#0A0F17; --surface:#111A26; --surface-2:#182334; --line:#233044;
+  --fg:#E6EDF7; --fg-2:#C0CCDC; --muted:#8C9AAE;
+  --accent:#5B9BF0; --accent-strong:#84B4F5; --accent-ink:#04122A; --accent-soft:#132B4D;
+  --hero:#112B54; --hero-2:#173868; --hero-ink:#EEF4FF; --hero-muted:#A0BAE2; --shuttle:#FFC94A;
+  --shuttle-ink:#2A1C00; --fab-glow:rgba(0,0,0,.4);
+  --scrim:rgba(0,0,0,.62); --shadow:0 1px 0 rgba(255,255,255,.03);
+}
+.swatch{width:14px;height:14px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.seg.pal button{display:flex;align-items:center;justify-content:center;gap:8px}
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
@@ -99,7 +118,7 @@ button{cursor:pointer}
 .tab[aria-current="page"] span{font-weight:700}
 .fab-wrap{display:flex;justify-content:center}
 .fab{width:58px;height:58px;border-radius:20px;border:0;background:var(--accent);color:var(--accent-ink);
-  display:grid;place-items:center;transform:translateY(-14px);box-shadow:0 8px 20px rgba(11,122,75,.32)}
+  display:grid;place-items:center;transform:translateY(-14px);box-shadow:0 8px 20px var(--fab-glow)}
 .fab svg{width:28px;height:28px}
 
 /* ---------- Building blocks ---------- */
@@ -183,6 +202,12 @@ textarea.input{min-height:200px;resize:vertical;line-height:1.5;font-size:15px}
 .hero .cell{background:var(--hero-2);border-radius:14px;padding:10px 12px}
 .hero .cell small{display:block;font-size:12px;color:var(--hero-muted);font-weight:500}
 .hero .cell b{font-size:17px;font-weight:700}
+.hero .hero-pre{display:flex;align-items:center;gap:8px;width:100%;margin-top:10px;min-height:44px;padding:0 12px;border:0;border-radius:14px;
+  background:var(--hero-2);color:var(--hero-ink);font-size:13.5px;font-weight:500;text-align:left}
+.hero .hero-pre span{flex:1;color:var(--hero-muted)}
+.hero .hero-pre b{font-size:15px;font-weight:700}
+.hero .hero-pre .chev{color:var(--hero-muted)}
+.depo-ic span.pre{background:var(--av2b);color:var(--av2f)}
 .hero .shuttle-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--shuttle);margin-right:6px;vertical-align:1px}
 
 .sess{display:flex;gap:14px;align-items:center;width:100%;background:none;border:0;text-align:left;padding:0;color:inherit}
@@ -296,6 +321,7 @@ textarea.input{min-height:200px;resize:vertical;line-height:1.5;font-size:15px}
 .split{display:flex;align-items:center;gap:10px;background:var(--surface-2);border-radius:12px;padding:8px 8px 8px 12px}
 .split .main{flex:1;min-width:0;font-size:14px}
 .split .main b{font-weight:700}
+.payer{display:flex;flex-direction:column;gap:8px}
 .add-items{display:flex;flex-direction:column;gap:8px}
 
 /* participants sheet */
@@ -365,7 +391,7 @@ textarea.input{min-height:200px;resize:vertical;line-height:1.5;font-size:15px}
 .lock h1{margin:0;font-size:22px}
 .lock p{margin:0;color:var(--hero-muted);font-size:14px}
 .lock .input{background:var(--hero-2);border-color:transparent;color:var(--hero-ink);text-align:center;font-size:18px}
-.lock .btn{background:var(--shuttle);color:#16210A}
+.lock .btn{background:var(--shuttle);color:var(--shuttle-ink)}
 .lock .lock-link{font-size:14px;text-align:left}
 .lock .lock-link::placeholder,.lock .input::placeholder{color:var(--hero-muted);opacity:.8}
 .lock-msg{color:var(--shuttle)!important;font-weight:600}
@@ -398,12 +424,24 @@ textarea.input{min-height:200px;resize:vertical;line-height:1.5;font-size:15px}
 <div id="layers"></div>
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 <div id="lock" class="lock" hidden></div>
-<script>const PWA = true;</script>
 <script>
-/* Quản lý quỹ Lông thủ — giao diện. Dữ liệu tiền tính bằng nghìn đồng (k). */
+/* Quản lý quỹ — giao diện dùng chung cho các quỹ cầu lông. Dữ liệu tiền tính bằng nghìn đồng (k). */
 'use strict';
+/* Mỗi bản app có thể đặt APP_CONFIG trước file này để đổi tên, nội dung chuyển khoản, bộ nhớ riêng. */
+const CFG = Object.assign({
+  appName: 'Quản lý quỹ Lông thủ',   // tiêu đề trong app
+  fundLabel: 'Quỹ Lông thủ',         // đầu tin nhắn nhắc nợ
+  transferTag: 'Long thu',           // nội dung chuyển khoản: "<Tên> dong quy <tag> dd-mm"
+  sheetName: 'Lông thủ NSMO',        // tên file Google Sheet (hiện ở Cài đặt)
+  storePrefix: '',                   // tiền tố bộ nhớ, để 2 app trên cùng tên miền không lẫn nhau
+  noPin: false,                      // true = mở app không cần mã truy cập (Code.gs đặt requirePin: false)
+  palette: 'green',                  // màu mặc định: 'green' (xanh lá) hoặc 'blue' (xanh dương)
+  theme: 'auto'                      // chế độ mặc định: 'auto' | 'light' | 'dark'
+}, typeof APP_CONFIG !== 'undefined' ? APP_CONFIG : {});
 const FUND = 'Quỹ';
-const APP_NAME = 'Quản lý quỹ Lông thủ';
+const PRE_BUY = 'Quỹ - đặt trước';   // quỹ trả trước tiền sân, chưa chia cho ai
+const PRE_USE = 'Tiền đặt trước';    // khoản chi trừ vào tiền sân đã đặt trước
+const APP_NAME = CFG.appName;
 const BANKS = [
   ['970436', 'Vietcombank'], ['970415', 'VietinBank'], ['970418', 'BIDV'], ['970405', 'Agribank'],
   ['970407', 'Techcombank'], ['970422', 'MB Bank'], ['970416', 'ACB'], ['970432', 'VPBank'],
@@ -448,6 +486,7 @@ function cat(content) {
   if (s.includes('nước')) return 'nuoc'; if (s.includes('xe')) return 'xe'; return 'khac';
 }
 function store(key, val) {
+  key = CFG.storePrefix + key;
   try { if (val === undefined) return localStorage.getItem(key); if (val === null) localStorage.removeItem(key); else localStorage.setItem(key, val); }
   catch (e) { return null; }
 }
@@ -492,16 +531,22 @@ function compute(d) {
   const partsBy = {};
   d.parts.forEach(([id, c, w]) => { (partsBy[id] = partsBy[id] || []).push([c, Number(w) || 1]); ensure(c); });
   const share = {}, paid = {}, dep = {}, games = {}, shares = {}, byDate = {};
-  let fundOut = 0, depTotal = 0;
+  let fundOut = 0, depTotal = 0, preBought = 0, preUsed = 0;
+  const preItems = [];
   d.expenses.forEach(e => {
+    if (e.payer === PRE_BUY) { fundOut += e.amount; preBought += e.amount; preItems.push(e); return; }
     const ps = partsBy[e.id] || [];
     const sw = ps.reduce((a, p) => a + p[1], 0);
     const sh = {};
     ps.forEach(([c, w]) => { const v = sw ? e.amount * w / sw : 0; sh[c] = v; add(share, c, v); });
     shares[e.id] = sh;
-    if (e.payer === FUND) fundOut += e.amount; else { ensure(e.payer); add(paid, e.payer, e.amount); }
-    const s = byDate[e.date] || (byDate[e.date] = { date: e.date, items: [], players: new Set(), total: 0, fundOut: 0 });
-    s.items.push(e); ps.forEach(([c]) => s.players.add(c)); s.total += e.amount; if (e.payer === FUND) s.fundOut += e.amount;
+    if (e.payer === FUND) fundOut += e.amount;
+    else if (e.payer === PRE_USE) preUsed += e.amount;
+    else { ensure(e.payer); add(paid, e.payer, e.amount); }
+    const s = byDate[e.date] || (byDate[e.date] = { date: e.date, items: [], players: new Set(), total: 0, fundOut: 0, preUsed: 0 });
+    s.items.push(e); ps.forEach(([c]) => s.players.add(c)); s.total += e.amount;
+    if (e.payer === FUND) s.fundOut += e.amount;
+    if (e.payer === PRE_USE) s.preUsed += e.amount;
   });
   d.deposits.forEach(x => { ensure(x.member); add(dep, x.member, x.amount); depTotal += x.amount; });
   const sessions = Object.values(byDate).sort((a, b) => b.date.localeCompare(a.date));
@@ -518,15 +563,18 @@ function compute(d) {
   d.deposits.forEach(x => { M(monthKey(x.date)).thu += x.amount; });
   const debtors = order.filter(c => r0(bal[c]) <= -1).sort((a, b) => bal[a] - bal[b]);
   const sugg = {};
-  const recent = d.expenses.slice().sort((a, b) => b.date.localeCompare(a.date)).slice(0, 80);
+  const recent = d.expenses.filter(e => e.payer !== PRE_BUY).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 80);
   recent.forEach((e, i) => {
     const c = cat(e.content); const o = sugg[c] || (sugg[c] = {});
     o[e.amount] = (o[e.amount] || 0) + 100 - i;
   });
   Object.keys(sugg).forEach(c => { sugg[c] = Object.entries(sugg[c]).sort((a, b) => b[1] - a[1]).slice(0, 3).map(x => Number(x[0])); });
   const sumBal = order.reduce((a, c) => a + bal[c], 0);
+  const prepaidOn = !!(d.settings && d.settings.prepaid) || preBought > 0;
+  preItems.sort((a, b) => b.date.localeCompare(a.date));
   return { mem, order, partsBy, shares, share, paid, dep, games, bal, sessions, byDate, months,
-    fund: depTotal - fundOut, depTotal, fundOut, debtors, sugg, sumBal };
+    fund: depTotal - fundOut, depTotal, fundOut, debtors, sugg, sumBal,
+    prepaidOn, prepaid: preBought - preUsed, preItems };
 }
 const nm = c => c === FUND ? FUND : (S.c.mem[c] ? S.c.mem[c].name : c);
 function initials(name) {
@@ -580,39 +628,60 @@ async function callLink(fn, args) {
 }
 function errText(e) { return String((e && e.message) || e).replace(/^(Exception|Error):\s*/, '').replace(/^\[(PIN|LINK|NET)\] /, ''); }
 function isPinErr(e) { return String((e && e.message) || e).indexOf('[PIN]') >= 0; }
+/* sai/thiếu mã: xoá mã đã nhớ và hỏi lại (kể cả bản không dùng mã, phòng khi Apps Script vẫn đòi mã) */
+function pinFail(e) { setPin(''); dropSnap(); showLock(errText(e), { pin: true }); }
 function isLinkErr(e) { return String((e && e.message) || e).indexOf('[LINK]') >= 0; }
 async function call(fn, args, ok) {
   if (S.writing) { toast('Đang lưu, chờ chút…'); return null; }
   S.writing = true;
   try {
+    if (S.refreshing) await S.refreshing;               // app vừa mở bằng dữ liệu lần trước: chờ bản mới rồi mới ghi
     const d = await api(fn, ...(args || []));
     setData(d);
     if (d && d.warnings && d.warnings.length) toast(d.warnings.join(' '), { err: true });
     else if (ok) toast(typeof ok === 'function' ? ok(d) : ok, d && d.undo ? { undo: d.undo } : null);
     return d;
   } catch (e) {
-    if (isPinErr(e)) { setPin(''); showLock(errText(e)); }
+    if (isPinErr(e)) pinFail(e);
     else if (isLinkErr(e)) showLock(errText(e), { link: true });
     else toast(errText(e), { err: true });
     return null;
   } finally { S.writing = false; }
 }
-function setData(d) {
+function setData(d, fromSnap) {
   S.data = d; S.c = compute(d);
+  if (!fromSnap) { S.stale = false; saveSnap(d); }
   render(); refreshLayers();
 }
+/* Bản dữ liệu lần trước lưu trên máy: mở app là hiện ngay, bản mới tải phía sau rồi thay vào. */
+const DATA_KEY = 'qlt_data';
+function saveSnap(d) {
+  if (typeof PROTOTYPE !== 'undefined' && PROTOTYPE) return;
+  try { const o = Object.assign({}, d); delete o.warnings; delete o.undo; store(DATA_KEY, JSON.stringify({ t: Date.now(), d: o })); } catch (e) { /* bộ nhớ đầy: bỏ qua */ }
+}
+function loadSnap() {
+  try { const o = JSON.parse(store(DATA_KEY) || 'null'); return o && o.d && Array.isArray(o.d.expenses) && Array.isArray(o.d.members) ? o : null; }
+  catch (e) { return null; }
+}
+function dropSnap() { store(DATA_KEY, null); }
+function hhmm(t) { const d = new Date(t); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') + ' ' + String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0'); }
 const PIN_KEY = 'qlt_pin';
+const NO_PIN = !!CFG.noPin;
+function pinOff() { return NO_PIN || !!(S.data && S.data.settings && S.data.settings.noPin); }
 function getPin() { return store(PIN_KEY) || S.pinMem || ''; }
 function setPin(p) { S.pinMem = p; store(PIN_KEY, p || null); }
 
 /* ---------- theme ---------- */
+const PALETTES = { blue: ['Xanh dương', '#1F5FBF', '#EEF3F9', '#0A0F17'], green: ['Xanh lá', '#0B7A4B', '#F1F4F0', '#0A100D'] };
+function curTheme() { const t = store('qlt_theme') || CFG.theme; return ['auto', 'light', 'dark'].indexOf(t) >= 0 ? t : 'auto'; }
+function curPalette() { const p = store('qlt_palette') || CFG.palette; return PALETTES[p] ? p : 'green'; }
 function applyTheme() {
-  const t = store('qlt_theme') || 'auto';
-  if (t === 'auto') document.documentElement.removeAttribute('data-theme');
-  else document.documentElement.setAttribute('data-theme', t);
+  const t = curTheme(), p = curPalette(), root = document.documentElement;
+  if (t === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', t);
+  if (p === 'green') root.removeAttribute('data-palette'); else root.setAttribute('data-palette', p);
   const dark = t === 'dark' || (t === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
   const m = document.querySelector('meta[name="theme-color"]');
-  if (m) m.setAttribute('content', dark ? '#0A100D' : '#F1F4F0');
+  if (m) m.setAttribute('content', PALETTES[p][dark ? 3 : 2]);
 }
 try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme); } catch (e) { /* bỏ qua */ }
 
@@ -639,8 +708,9 @@ function vHome() {
     '<div class="lbl"><span class="shuttle-dot"></span>Quỹ còn lại</div>' +
     '<div class="big num">' + esc(k(c.fund).replace(/k$/, '')) + '<small>k</small></div>' +
     '<div class="hero-cells"><div class="cell"><small>Nộp tháng này</small><b class="num">' + sk(m.thu) + '</b></div>' +
-    '<div class="cell"><small>Chi tháng này</small><b class="num">' + k(m.chi) + '</b></div></div></section>';
-  if (Math.abs(c.fund - c.sumBal) > 1) h += '<div class="card"><p class="err" style="margin:0">Tổng số dư thành viên (' + k(c.sumBal) + ') đang lệch với quỹ. Hãy kiểm tra lại dữ liệu trong sheet.</p></div>';
+    '<div class="cell"><small>Chi tháng này</small><b class="num">' + k(m.chi) + '</b></div></div>' +
+    (c.prepaidOn ? '<button class="hero-pre" data-act="prepaidInfo"><span>Tiền sân đặt trước còn</span><b class="num">' + k(c.prepaid) + '</b>' + ic('right', 'chev') + '</button>' : '') + '</section>';
+  if (Math.abs(c.fund + c.prepaid - c.sumBal) > 1) h += '<div class="card"><p class="err" style="margin:0">Tổng số dư thành viên (' + k(c.sumBal) + ') đang lệch với quỹ. Hãy kiểm tra lại dữ liệu trong sheet.</p></div>';
   h += '<section class="card"><div class="card-h"><h2>Đang nợ</h2>' +
     (c.debtors.length ? '<span class="pill debt num">' + c.debtors.length + ' người · ' + k(debt) + '</span>' : '<span class="pill pos">Không ai nợ</span>') + '</div>';
   if (c.debtors.length) {
@@ -715,14 +785,15 @@ function vHistory() {
   const ev = [];
   c.sessions.forEach(s => { if ((!f.month || monthKey(s.date) === f.month) && (!f.member || s.players.has(f.member) || s.items.some(e => e.payer === f.member))) ev.push({ d: s.date, s }); });
   S.data.deposits.forEach(x => { if ((!f.month || monthKey(x.date) === f.month) && (!f.member || x.member === f.member)) ev.push({ d: x.date, x }); });
-  ev.sort((a, b) => b.d.localeCompare(a.d) || (a.s ? -1 : 1));
+  if (!f.member) c.preItems.forEach(p => { if (!f.month || monthKey(p.date) === f.month) ev.push({ d: p.date, p }); });
+  ev.sort((a, b) => b.d.localeCompare(a.d) || (a.s ? -1 : b.s ? 1 : 0));
   if (!ev.length) return h + '<div class="empty"><b>Chưa có gì ở đây</b>Thử bỏ bớt bộ lọc.</div>';
   const groups = {};
   ev.forEach(e => (groups[monthKey(e.d)] = groups[monthKey(e.d)] || []).push(e));
   Object.keys(groups).sort().reverse().forEach(mk => {
     const g = groups[mk], chi = g.reduce((a, e) => a + (e.s ? (f.member ? sessShare(e.s, f.member) : e.s.total) : 0), 0);
     h += '<div class="monthh"><h3>' + monthLabel(mk, true) + '</h3><span class="hint num">' + (f.member ? 'Phần của ' + esc(nm(f.member)) + ': ' : 'Chi ') + k(chi) + '</span></div><div class="list-card">' +
-      g.map(e => e.s ? sessBtn(e.s, f.member) : depBtn(e.x)).join('') + '</div>';
+      g.map(e => e.s ? sessBtn(e.s, f.member) : e.p ? preBtn(e.p) : depBtn(e.x)).join('') + '</div>';
   });
   return h;
 }
@@ -731,6 +802,13 @@ function depBtn(x) {
     '<span class="main"><span class="t">' + esc(nm(x.member)) + (x.amount < 0 ? ' rút quỹ' : ' nộp quỹ') + '</span>' +
     '<span class="s clamp">' + wds(x.date) + ' ' + dm(x.date) + (x.note ? ' · ' + esc(x.note) : '') + '</span></span>' +
     '<span class="amt num ' + tone(x.amount) + '">' + sk(x.amount) + '</span></button>';
+}
+
+function preBtn(p) {
+  return '<button class="sess" data-act="prepaid" data-id="' + esc(p.id) + '"><span class="depo-ic"><span class="pre">' + ic('calendar') + '</span></span>' +
+    '<span class="main"><span class="t">' + esc(p.content || 'Đặt trước tiền sân') + '</span>' +
+    '<span class="s clamp">' + wds(p.date) + ' ' + dm(p.date) + ' · quỹ trả trước, chưa chia</span></span>' +
+    '<span class="amt num">' + k(p.amount) + '</span></button>';
 }
 
 /* ---------- Thành viên ---------- */
@@ -754,21 +832,24 @@ function vMembers() {
 
 /* ---------- Cài đặt ---------- */
 function vSettings() {
-  const t = store('qlt_theme') || 'auto', b = S.data.settings && S.data.settings.bank;
+  const t = curTheme(), pal = curPalette(), b = S.data.settings && S.data.settings.bank;
   const bankName = b ? (BANKS.find(x => x[0] === b.bin) || [0, 'Mã ' + b.bin])[1] : '';
   return '<div class="group"><h2>Giao diện</h2><div class="card"><div class="seg" role="group" aria-label="Chế độ hiển thị">' +
     [['auto', 'Tự động'], ['light', 'Sáng'], ['dark', 'Tối']].map(o => '<button data-act="theme" data-t="' + o[0] + '" aria-pressed="' + (t === o[0]) + '">' + o[1] + '</button>').join('') +
-    '</div><p class="hint" style="margin:10px 2px 0">Tự động: theo chế độ sáng/tối của điện thoại.</p></div></div>' +
+    '</div><p class="hint" style="margin:8px 2px 14px">Tự động: theo chế độ sáng/tối của điện thoại.</p>' +
+    '<div class="seg pal" role="group" aria-label="Màu giao diện">' +
+    Object.keys(PALETTES).map(k => '<button data-act="palette" data-p="' + k + '" aria-pressed="' + (pal === k) + '"><span class="swatch" style="background:' + PALETTES[k][1] + '"></span>' + PALETTES[k][0] + '</button>').join('') +
+    '</div></div></div>' +
     '<div class="group"><h2>Nhận tiền</h2><div class="card set-list"><button class="setrow" data-act="bank"><span class="ic">' + ic('bank') + '</span><span class="main"><span class="t">Tài khoản nhận quỹ</span>' +
     '<span class="s">' + (b ? esc(bankName + ' · ' + b.acct) : 'Chưa nhập · cần để tạo mã QR') + '</span></span>' + ic('right', 'chev') + '</button></div></div>' +
     '<div class="group"><h2>Thành viên</h2><div class="card set-list"><button class="setrow" data-act="manage"><span class="ic">' + ic('users') + '</span><span class="main"><span class="t">Quản lý thành viên</span>' +
     '<span class="s">' + activeCodes().length + ' đang chơi · tên hiển thị · thêm người mới</span></span>' + ic('right', 'chev') + '</button></div></div>' +
     (IS_APP ? '<div class="group"><h2>Ứng dụng</h2><div class="card set-list">' +
-      (S.installEvt ? '<button class="setrow" data-act="install"><span class="ic" style="background:var(--accent-soft);color:var(--accent)">' + ic('plus') + '</span><span class="main"><span class="t">Cài app vào điện thoại</span><span class="s">Thêm biểu tượng Quỹ Lông thủ vào màn hình chính</span></span>' + ic('right', 'chev') + '</button>' : '') +
+      (S.installEvt ? '<button class="setrow" data-act="install"><span class="ic" style="background:var(--accent-soft);color:var(--accent)">' + ic('plus') + '</span><span class="main"><span class="t">Cài app vào điện thoại</span><span class="s">Thêm biểu tượng ' + esc(CFG.fundLabel) + ' vào màn hình chính</span></span>' + ic('right', 'chev') + '</button>' : '') +
       '<button class="setrow" data-act="relink"><span class="ic">' + ic('share') + '</span><span class="main"><span class="t">Kết nối Google Sheet</span><span class="s">' + (validLink(apiLink()) ? 'Đã kết nối · …' + esc(apiLink().slice(-18)) : 'Chưa có link kết nối') + '</span></span>' + ic('right', 'chev') + '</button></div></div>' : '') +
-    '<div class="group"><h2>Bảo mật</h2><div class="card set-list"><button class="setrow" data-act="pin"><span class="ic">' + ic('key') + '</span><span class="main"><span class="t">Đổi mã truy cập</span><span class="s">Mã dùng để mở app, 4–64 ký tự</span></span>' + ic('right', 'chev') + '</button>' +
-    '<button class="setrow" data-act="lockNow"><span class="ic">' + ic('lock') + '</span><span class="main"><span class="t">Khoá app trên máy này</span><span class="s">Lần sau mở app phải nhập lại mã</span></span>' + ic('right', 'chev') + '</button></div></div>' +
-    '<p class="foot-note">' + (typeof PROTOTYPE !== 'undefined' && PROTOTYPE ? 'Bản mẫu dùng bản sao dữ liệu ngày 13/10/2026. Mọi thay đổi chỉ nằm trên trang này, không ghi vào sheet.' : 'Dữ liệu đọc và ghi thẳng vào Google Sheet Lông thủ NSMO. Mỗi thay đổi cũng được ghi sang tab Smash.') + '</p>';
+    (pinOff() ? '' : '<div class="group"><h2>Bảo mật</h2><div class="card set-list"><button class="setrow" data-act="pin"><span class="ic">' + ic('key') + '</span><span class="main"><span class="t">Đổi mã truy cập</span><span class="s">Mã dùng để mở app, 4–64 ký tự</span></span>' + ic('right', 'chev') + '</button>' +
+    '<button class="setrow" data-act="lockNow"><span class="ic">' + ic('lock') + '</span><span class="main"><span class="t">Khoá app trên máy này</span><span class="s">Lần sau mở app phải nhập lại mã</span></span>' + ic('right', 'chev') + '</button></div></div>') +
+    '<p class="foot-note">' + (typeof PROTOTYPE !== 'undefined' && PROTOTYPE ? 'Bản mẫu dùng bản sao dữ liệu ngày 13/10/2026. Mọi thay đổi chỉ nằm trên trang này, không ghi vào sheet.' : 'Dữ liệu đọc và ghi thẳng vào Google Sheet ' + esc(CFG.sheetName) + '. Mỗi thay đổi cũng được ghi sang tab Smash.') + '</p>';
 }
 
 /* ---------- layers ---------- */
@@ -885,7 +966,7 @@ function openSession(date) {
       return '<div class="rows">' + s.items.map(e => {
         const n = (S.c.partsBy[e.id] || []).length, x2 = (S.c.partsBy[e.id] || []).filter(p => p[1] > 1).length;
         return '<div class="row"><span class="main"><span class="t">' + esc(e.content) + '</span><span class="s clamp">' +
-          (e.payer === FUND ? 'Quỹ trả' : esc(nm(e.payer)) + ' trả hộ') + ' · chia ' + n + ' người' + (x2 ? ' (' + x2 + ' người ×2)' : '') + '</span></span><span class="amt">' + k(e.amount) + '</span></div>';
+          payerLabel(e.payer) + ' · chia ' + n + ' người' + (x2 ? ' (' + x2 + ' người ×2)' : '') + '</span></span><span class="amt">' + k(e.amount) + '</span></div>';
       }).join('') + '</div>' +
         '<div class="sec-h"><h3>Mỗi người trả</h3></div><div class="rows">' + people.map(c => '<div class="row" style="min-height:48px">' + av(c, 'sm') +
           '<span class="main"><span class="t">' + esc(nm(c)) + '</span></span><span class="amt">' + k(per[c]) + '</span></div>').join('') + '</div>';
@@ -947,18 +1028,56 @@ function openDepositForm(code) {
   });
 }
 
+/* ---------- tiền sân đặt trước ---------- */
+function openPrepaidForm() {
+  const st = { amount: '', date: todayISO(), note: '' };
+  sheet({
+    title: () => 'Ghi tiền sân đặt trước', st,
+    sub: () => 'Quỹ trả trước tiền sân cho nhiều buổi. Mỗi buổi sau chọn "Đặt trước" ở khoản tiền sân để trừ dần.',
+    body: () => '<div class="field"><label for="preAmt">Số tiền</label><div class="money"><input id="preAmt" class="input num" inputmode="decimal" placeholder="0" value="' + esc(st.amount) + '" data-bind="preAmt" autocomplete="off"><span class="unit">k</span></div></div>' +
+      '<div class="field"><label for="preDate">Ngày trả</label><input id="preDate" class="input" type="date" value="' + st.date + '" data-bind="preDate"></div>' +
+      '<div class="field"><label for="preNote">Ghi chú (không bắt buộc)</label><input id="preNote" class="input" placeholder="Ví dụ: 5 buổi tháng 11" value="' + esc(st.note) + '" data-bind="preNote" autocomplete="off"></div>',
+    foot: () => '<button class="btn primary" data-act="preSave"' + (num(st.amount) > 0 ? '' : ' disabled') + '>Lưu' + (num(st.amount) > 0 ? ' · ' + k(num(st.amount)) : '') + '</button>'
+  });
+}
+function openPrepaid(id) {
+  const p = S.c.preItems.find(x => x.id === id); if (!p) return;
+  sheet({
+    title: () => 'Đặt trước tiền sân',
+    body: () => '<div class="sum-grid"><div class="tile"><small>Số tiền</small><b>' + k(p.amount) + '</b></div><div class="tile"><small>Ngày trả</small><b>' + dm(p.date) + '</b></div>' +
+      '<div class="tile wide"><small>Tiền sân đặt trước còn (tất cả)</small><b>' + k(S.c.prepaid) + '</b></div></div>' +
+      '<p class="hint" style="margin:0">' + esc(p.content) + '</p>',
+    foot: () => '<button class="btn danger" data-act="delPrepaid" data-id="' + esc(p.id) + '">' + ic('trash') + 'Xoá khoản này</button>'
+  });
+}
+function openPrepaidInfo() {
+  sheet({
+    title: () => 'Tiền sân đặt trước',
+    body: () => {
+      const c = S.c, used = [];
+      c.sessions.forEach(s => s.items.forEach(e => { if (e.payer === PRE_USE) used.push(e); }));
+      return '<div class="sum-grid"><div class="tile wide"><small>Còn lại, chưa chia cho ai</small><b>' + k(c.prepaid) + '</b></div></div>' +
+        '<p class="hint" style="margin:0">Quỹ còn lại ở trang chủ đã trừ khoản này. Mỗi buổi chọn "Đặt trước" cho tiền sân để trừ dần.</p>' +
+        '<div class="sec-h"><h3>Đã trả trước</h3></div><div class="rows">' + (c.preItems.map(p => '<button class="row" data-act="prepaid" data-id="' + esc(p.id) + '"><span class="main"><span class="t">' + esc(p.content) + '</span><span class="s">' + dmy(p.date) + '</span></span><span class="amt">' + k(p.amount) + '</span>' + ic('right', 'chev') + '</button>').join('') || '<p class="muted">Chưa có.</p>') + '</div>' +
+        '<div class="sec-h"><h3>Đã trừ dần</h3><span class="hint">' + used.length + ' khoản</span></div><div class="rows">' + (used.slice(0, 30).map(e => '<button class="row" data-act="session" data-date="' + e.date + '"><span class="main"><span class="t">' + esc(e.content) + '</span><span class="s">' + wds(e.date) + ' ' + dmy(e.date) + '</span></span><span class="amt">' + k(e.amount) + '</span>' + ic('right', 'chev') + '</button>').join('') || '<p class="muted">Chưa có.</p>') + '</div>' +
+        '<button class="btn ghost block" data-act="newPrepaid">' + ic('plus') + 'Ghi thêm tiền sân đặt trước</button>';
+    }
+  });
+}
+
 /* ---------- remind ---------- */
 function bankLines(b) {
   if (!b) return '';
   const nm2 = (BANKS.find(x => x[0] === b.bin) || [0, 'Ngân hàng mã ' + b.bin])[1];
   return 'Chuyển khoản: ' + nm2 + ' – ' + b.acct + (b.holder ? ' – ' + b.holder : '');
 }
-function transferNote(code) { const d = todayISO(); return plain(nm(code)) + ' dong quy Long thu ' + d.slice(8) + '-' + d.slice(5, 7); }
+function payerLabel(p) { return p === FUND ? 'Quỹ trả' : p === PRE_USE ? 'Trừ tiền sân đặt trước' : esc(nm(p)) + ' trả hộ'; }
+function transferNote(code) { const d = todayISO(); return plain(nm(code)) + ' dong quy ' + CFG.transferTag + ' ' + d.slice(8) + '-' + d.slice(5, 7); }
 function remindText(sel) {
   const c = S.c, d = todayISO(), b = S.data.settings && S.data.settings.bank;
-  return '🏸 Quỹ Lông thủ – cập nhật ' + dmy(d) + '\nQuỹ còn: ' + k(c.fund) + '\n\nCác bạn cần đóng thêm:\n' +
+  return '🏸 ' + CFG.fundLabel + ' – cập nhật ' + dmy(d) + '\nQuỹ còn: ' + k(c.fund) + (c.prepaidOn && r0(c.prepaid) ? ' (đã trả trước tiền sân ' + k(c.prepaid) + ')' : '') + '\n\nCác bạn cần đóng thêm:\n' +
     sel.map(x => '• ' + nm(x) + ': ' + k(-c.bal[x])).join('\n') +
-    (b ? '\n\n' + bankLines(b) + '\nNội dung: <Tên> dong quy Long thu ' + d.slice(8) + '-' + d.slice(5, 7) : '') +
+    (b ? '\n\n' + bankLines(b) + '\nNội dung: <Tên> dong quy ' + CFG.transferTag + ' ' + d.slice(8) + '-' + d.slice(5, 7) : '') +
     '\n\nMọi người chuyển giúp mình nhé, cảm ơn cả nhà!';
 }
 function openRemind() {
@@ -1080,7 +1199,15 @@ function openPinChange() {
 
 /* ---------- Thêm buổi: 3 bước ---------- */
 let KEY = 1;
-function newItem(content, extra) { return Object.assign({ key: KEY++, id: null, content, amount: '', payer: FUND, custom: null }, extra || {}); }
+function newItem(content, extra) { return Object.assign({ key: KEY++, id: null, content, amount: '', payer: defaultPayer(content), custom: null }, extra || {}); }
+function defaultPayer(content) { return S.c && S.c.prepaidOn && cat(content) === 'san' && preLeft() > 0 ? PRE_USE : FUND; }
+/* tiền sân đặt trước còn dùng được cho buổi đang nhập (khi sửa buổi: cộng lại phần buổi đó đã dùng) */
+function preLeft(exceptKey) {
+  const c = S.c, w = S.wiz; if (!c) return 0;
+  let left = c.prepaid + (w && w.mode === 'edit' && c.byDate[w.origDate] ? c.byDate[w.origDate].preUsed : 0);
+  if (w) w.items.forEach(it => { if (it.key !== exceptKey && it.payer === PRE_USE) left -= num(it.amount); });
+  return left;
+}
 function startWizard(date) {
   const c = S.c;
   if (date) {
@@ -1106,13 +1233,14 @@ function itemParts(it) {
 }
 function wizTotals() {
   const w = S.wiz, per = {}, items = w.items.filter(it => num(it.amount) > 0);
-  let total = 0, fromFund = 0; const adv = {};
+  let total = 0, fromFund = 0, fromPre = 0; const adv = {};
   items.forEach(it => {
     const a = num(it.amount), ps = itemParts(it), sw = ps.reduce((x, p) => x + p[1], 0);
-    total += a; if (it.payer === FUND) fromFund += a; else adv[it.payer] = (adv[it.payer] || 0) + a;
+    total += a;
+    if (it.payer === FUND) fromFund += a; else if (it.payer === PRE_USE) fromPre += a; else adv[it.payer] = (adv[it.payer] || 0) + a;
     ps.forEach(([c, wt]) => { per[c] = per[c] || { total: 0, by: [] }; const v = sw ? a * wt / sw : 0; per[c].total += v; per[c].by.push([it.content, v]); });
   });
-  return { per, total, fromFund, adv, items };
+  return { per, total, fromFund, fromPre, adv, items };
 }
 function wizProblem() {
   const w = S.wiz;
@@ -1124,6 +1252,7 @@ function wizProblem() {
       if (!(num(it.amount) > 0)) return 'Nhập số tiền cho "' + it.content + '"';
       if (!itemParts(it).length) return '"' + it.content + '" chưa có ai chia';
     }
+    if (w.items.some(it => it.payer === PRE_USE) && preLeft() < -0.5) return 'Tiền sân đặt trước không đủ (thiếu ' + k(-preLeft()) + ')';
   }
   return '';
 }
@@ -1156,8 +1285,7 @@ function wizBody() {
         '<button class="icon-btn" data-act="wDelItem" data-key="' + it.key + '" aria-label="Bỏ khoản ' + esc(it.content) + '">' + ic('trash') + '</button></div>' +
         '<div class="money"><label class="sr" for="ia_' + it.key + '">Số tiền ' + esc(it.content) + '</label><input id="ia_' + it.key + '" class="input num" inputmode="decimal" placeholder="0" value="' + esc(it.amount) + '" data-bind="itAmt" data-key="' + it.key + '" autocomplete="off"><span class="unit">k</span></div>' +
         (sg.length ? '<div class="chips">' + sg.map(v => '<button class="chip" data-act="wSugg" data-key="' + it.key + '" data-v="' + v + '" aria-pressed="' + (num(it.amount) === v) + '">' + k(v) + '</button>').join('') + '</div>' : '') +
-        '<div class="seg" role="group" aria-label="Ai trả"><button data-act="wPayFund" data-key="' + it.key + '" aria-pressed="' + (it.payer === FUND) + '">Quỹ trả</button>' +
-        '<button data-act="wPayMem" data-key="' + it.key + '" aria-pressed="' + (it.payer !== FUND) + '">' + (it.payer === FUND ? 'Người khác trả' : esc(nm(it.payer)) + ' trả hộ') + '</button></div>' +
+        '<div class="payer">' + payerSeg(it) + '</div>' +
         '<div class="split"><span class="main">' + splitTxt + '</span><button class="btn ghost sm" data-act="wSplit" data-key="' + it.key + '">Đổi</button></div></div>';
     }).join('');
     b += '<div class="add-items"><span class="lbl">Thêm khoản</span><div class="chips">' +
@@ -1168,6 +1296,7 @@ function wizBody() {
     const oldFund = w.mode === 'edit' ? (c.byDate[w.origDate] ? c.byDate[w.origDate].fundOut : 0) : 0;
     const after = c.fund + oldFund - t.fromFund;
     b += '<div class="sum-grid"><div class="tile"><small>Tổng chi</small><b>' + k(t.total) + '</b></div><div class="tile"><small>Quỹ chi</small><b>' + k(t.fromFund) + '</b></div>' +
+      (t.fromPre ? '<div class="tile wide"><small>Trừ tiền sân đặt trước</small><b>' + k(t.fromPre) + ' <span class="hint">· còn ' + k(preLeft() ) + '</span></b></div>' : '') +
       '<div class="tile wide"><small>Quỹ còn lại sau khi lưu</small><b class="' + tone(after) + '">' + k(after) + '</b></div></div>';
     const adv = Object.keys(t.adv);
     if (adv.length) b += '<div class="card"><div class="sec-h"><h3>Trả hộ</h3></div><div class="rows">' + adv.map(x => '<div class="row" style="min-height:48px">' + av(x, 'sm') + '<span class="main"><span class="t">' + esc(nm(x)) + '</span><span class="s">Được cộng vào số dư</span></span><span class="amt pos">' + sk(t.adv[x]) + '</span></div>').join('') + '</div></div>';
@@ -1189,6 +1318,17 @@ function mergeBy(by) {
   const o = {}, order = [];
   by.forEach(([n2, v]) => { const t = String(n2).trim() || 'Khoản khác'; if (!(t in o)) { order.push(t); o[t] = 0; } o[t] += v; });
   return order.map(t => [t, o[t]]);
+}
+function payerSeg(it) {
+  const pre = S.c.prepaidOn, mem = it.payer !== FUND && it.payer !== PRE_USE;
+  let h = '<div class="seg" role="group" aria-label="Ai trả"><button data-act="wPayFund" data-key="' + it.key + '" aria-pressed="' + (it.payer === FUND) + '">' + (pre ? 'Quỹ' : 'Quỹ trả') + '</button>' +
+    (pre ? '<button data-act="wPayPre" data-key="' + it.key + '" aria-pressed="' + (it.payer === PRE_USE) + '">Đặt trước</button>' : '') +
+    '<button data-act="wPayMem" data-key="' + it.key + '" aria-pressed="' + mem + '">' + (mem ? esc(nm(it.payer)) + (pre ? ' trả' : ' trả hộ') : pre ? 'Người khác' : 'Người khác trả') + '</button></div>';
+  if (it.payer === PRE_USE) {
+    const left = preLeft(it.key) - num(it.amount);
+    h += '<p class="hint' + (left < -0.5 ? ' err' : '') + '" style="margin:-4px 2px 0">' + (left < -0.5 ? 'Tiền sân đặt trước chỉ còn ' + k(preLeft(it.key)) : 'Trừ vào tiền sân đặt trước · còn lại ' + k(left)) + '</p>';
+  }
+  return h;
 }
 function wItem(key) { return S.wiz.items.find(i => i.key === Number(key)); }
 function openSplit(key) {
@@ -1235,19 +1375,20 @@ function showLock(msg, o) {
   closeAll();
   o = o || {};
   const askLink = IS_APP && (o.link || !validLink(apiLink()));
+  const askPin = !NO_PIN || !!o.pin;
   const l = $('lock'); l.hidden = false;
-  if (o.retry && getPin() && !askLink) {                 // mất mạng lúc mở app: không bắt nhập lại mã, chỉ cần thử lại
+  if (o.retry && (getPin() || NO_PIN) && !askLink) {                 // mất mạng lúc mở app: không bắt nhập lại mã, chỉ cần thử lại
     l.innerHTML = '<form id="retryForm"><span class="logo">' + SHUTTLE + '</span><h1>' + APP_NAME + '</h1>' +
       '<p class="lock-msg" role="alert">' + esc(msg) + '</p><button class="btn block" type="button" data-act="retryBoot">Thử lại</button></form>';
     return;
   }
   l.innerHTML = '<form id="lockForm" novalidate><span class="logo">' + SHUTTLE + '</span><h1>' + APP_NAME + '</h1>' +
-    '<p>' + (typeof PROTOTYPE !== 'undefined' && PROTOTYPE ? 'Bản mẫu: nhập mã bất kỳ để mở.' : askLink ? 'Dán link kết nối Google Sheet và nhập mã truy cập.' : 'Nhập mã truy cập để mở app.') + '</p>' +
+    '<p>' + (typeof PROTOTYPE !== 'undefined' && PROTOTYPE ? 'Bản mẫu: nhập mã bất kỳ để mở.' : askLink ? 'Dán link kết nối Google Sheet' + (askPin ? ' và nhập mã truy cập.' : ' để mở app.') : askPin ? 'Nhập mã truy cập để mở app.' : 'Bấm Mở để tải lại dữ liệu.') + '</p>' +
     (askLink ? '<label class="sr" for="linkIn">Link kết nối (Apps Script)</label><input id="linkIn" class="input lock-link" type="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://script.google.com/macros/s/…/exec" value="' + esc(apiLink()) + '">' : '') +
-    '<label class="sr" for="lockIn">Mã truy cập</label><input id="lockIn" class="input" type="password" autocomplete="current-password" maxlength="64" placeholder="Mã truy cập">' +
+    (askPin ? '<label class="sr" for="lockIn">Mã truy cập</label><input id="lockIn" class="input" type="password" autocomplete="current-password" maxlength="64" placeholder="Mã truy cập">' : '') +
     (msg ? '<p class="lock-msg" role="alert">' + esc(msg) + '</p>' : '') + '<button class="btn block" type="submit">Mở</button>' +
     (IS_APP && !askLink ? '<button class="lock-link-btn" type="button" data-act="relink">Đổi link kết nối</button>' : '') + '</form>';
-  setTimeout(() => { const i = $(askLink && !validLink(apiLink()) ? 'linkIn' : 'lockIn'); if (i) i.focus(); }, 60);
+  setTimeout(() => { const i = $(askLink && (!validLink(apiLink()) || !askPin) ? 'linkIn' : 'lockIn'); if (i) i.focus(); }, 60);
 }
 document.addEventListener('submit', e => {
   if (e.target.id !== 'lockForm') return;
@@ -1256,10 +1397,12 @@ document.addEventListener('submit', e => {
   if (li) {
     const u = li.value.trim();
     if (!validLink(u)) { showLock('Link phải có dạng https://script.google.com/macros/s/…/exec', { link: true }); return; }
+    if (u !== apiLink()) dropSnap();                  // đổi sang sheet khác: bỏ dữ liệu cũ đã lưu
     store(LINK_KEY, u);
   }
-  const v = $('lockIn').value.trim(); if (!v) return;
-  setPin(v); $('lock').hidden = true; boot();
+  const pi = $('lockIn');
+  if (pi) { const v = pi.value.trim(); if (!v) return; setPin(v); }
+  $('lock').hidden = true; boot();
 });
 
 /* ---------- actions ---------- */
@@ -1267,7 +1410,21 @@ const A = {
   tab: el => { S.tab = el.dataset.tab; render(); window.scrollTo(0, 0); },
   fab: () => sheet({ title: () => 'Thêm mới', body: () => '<div class="set-list">' +
     '<button class="setrow" data-act="newSession"><span class="ic" style="background:var(--accent-soft);color:var(--accent)">' + ic('calendar') + '</span><span class="main"><span class="t">Thêm buổi chơi</span><span class="s">Tiền sân, cầu, nước… chia cho người chơi</span></span>' + ic('right', 'chev') + '</button>' +
-    '<button class="setrow" data-act="newDeposit"><span class="ic" style="background:var(--pos-soft);color:var(--pos)">' + ic('wallet') + '</span><span class="main"><span class="t">Ghi nộp quỹ</span><span class="s">Thành viên chuyển tiền vào quỹ</span></span>' + ic('right', 'chev') + '</button></div>' }),
+    '<button class="setrow" data-act="newDeposit"><span class="ic" style="background:var(--pos-soft);color:var(--pos)">' + ic('wallet') + '</span><span class="main"><span class="t">Ghi nộp quỹ</span><span class="s">Thành viên chuyển tiền vào quỹ</span></span>' + ic('right', 'chev') + '</button>' +
+    (S.c.prepaidOn ? '<button class="setrow" data-act="newPrepaid"><span class="ic" style="background:var(--av2b);color:var(--av2f)">' + ic('calendar') + '</span><span class="main"><span class="t">Ghi tiền sân đặt trước</span><span class="s">Quỹ trả trước tiền sân, các buổi sau trừ dần</span></span>' + ic('right', 'chev') + '</button>' : '') + '</div>' }),
+  newPrepaid: () => { closeAll(); openPrepaidForm(); },
+  prepaid: el => openPrepaid(el.dataset.id),
+  prepaidInfo: () => openPrepaidInfo(),
+  preSave: async () => {
+    const st = topLayer().st, a = num(st.amount);
+    const res = await call('addPrepaid', [{ date: st.date, amount: a, note: st.note.trim() }], 'Đã ghi đặt trước tiền sân ' + k(a));
+    if (res) closeAll();
+  },
+  delPrepaid: async el => {
+    const p = S.c.preItems.find(x => x.id === el.dataset.id); if (!p) return;
+    if (!(await confirmBox('Xoá khoản đặt trước này?', k(p.amount) + ' · ' + dmy(p.date) + '. Quỹ sẽ được cộng lại số tiền này.', 'Xoá', true))) return;
+    if (await call('deletePrepaid', [p.id], 'Đã xoá khoản đặt trước')) closeAll();
+  },
   newSession: () => { closeAll(); startWizard(); },
   newDeposit: () => { closeAll(); openDepositForm(''); },
   dismiss: () => popLayer(), close: () => popLayer(),
@@ -1283,6 +1440,7 @@ const A = {
   histMember: () => picker({ title: 'Lọc theo người', clear: true, all: true, cur: S.hist.member, onPick: c => { S.hist.member = c; render(); } }),
   memf: el => { S.memf = el.dataset.f; render(); },
   theme: el => { store('qlt_theme', el.dataset.t); applyTheme(); render(); },
+  palette: el => { store('qlt_palette', el.dataset.p); applyTheme(); render(); },
   bank: () => openBank(),
   manage: () => openManage(),
   pin: () => openPinChange(),
@@ -1294,7 +1452,7 @@ const A = {
   },
   relink: () => showLock('', { link: true }),
   retryBoot: () => { $('lock').hidden = true; boot(); },
-  lockNow: async () => { if (await confirmBox('Khoá app trên máy này?', 'Lần sau mở app sẽ phải nhập lại mã truy cập.', 'Khoá')) { setPin(''); showLock(); } },
+  lockNow: async () => { if (await confirmBox('Khoá app trên máy này?', 'Lần sau mở app sẽ phải nhập lại mã truy cập.', 'Khoá')) { setPin(''); dropSnap(); showLock(); } },
   pick: el => topLayer().pick(el.dataset.code),
   depositFor: el => openDepositForm(el.dataset.code),
   qr: el => openQR(el.dataset.code),
@@ -1312,7 +1470,8 @@ const A = {
   },
   undo: async () => {
     const u = S.undo; if (!u) return; $('toast').hidden = true; S.undo = null;
-    await call(u.kind === 'session' ? 'undoSession' : 'undoDeposit', [u], 'Đã hoàn tác');
+    if (u.kind === 'prepaid') await call('deletePrepaid', [u.id], 'Đã hoàn tác');
+    else await call(u.kind === 'session' ? 'undoSession' : 'undoDeposit', [u], 'Đã hoàn tác');
   },
   /* deposit form */
   depPick: () => { const st = topLayer().st; picker({ title: 'Ai nộp tiền?', cur: st.member, all: false, first: S.c.debtors.filter(c => S.c.mem[c].active),
@@ -1379,6 +1538,7 @@ const A = {
     setTimeout(() => { const i = $(el.dataset.n ? 'ia_' + it.key : 'in_' + it.key); if (i) { i.focus(); i.scrollIntoView({ block: 'center', behavior: 'smooth' }); } }, 30);
   },
   wPayFund: el => { wItem(el.dataset.key).payer = FUND; refreshLayers(); },
+  wPayPre: el => { wItem(el.dataset.key).payer = PRE_USE; S.wiz.dirty = true; refreshLayers(); },
   wPayMem: el => { const it = wItem(el.dataset.key); picker({ title: 'Ai trả hộ "' + it.content + '"?', cur: it.payer, first: [...S.wiz.players], onPick: c => { it.payer = c; S.wiz.dirty = true; refreshLayers(); } }); },
   wSplit: el => openSplit(el.dataset.key),
   spToggle: el => { const it = splitItem(), c = el.dataset.code; it.custom[c] = it.custom[c] ? 0 : 1; if (!it.custom[c]) delete it.custom[c]; refreshLayers(); },
@@ -1397,6 +1557,9 @@ const BIND = {
   depAmt: v => { topLayer().st.amount = v; updateFoot(); },
   depDate: v => { topLayer().st.date = v; },
   depNote: v => { topLayer().st.note = v; },
+  preAmt: v => { topLayer().st.amount = v; updateFoot(); },
+  preDate: v => { topLayer().st.date = v; },
+  preNote: v => { topLayer().st.note = v; },
   remTxt: v => { topLayer().st.text = v; },
   qrAmt: v => { topLayer().st.amount = v; clearTimeout(S.qrT); S.qrT = setTimeout(refreshLayers, 350); },
   bkBin: v => { topLayer().st.bin = v; refreshLayers(); },
@@ -1416,6 +1579,7 @@ function refreshWizFoot() {
   if (w.step === 2) host.querySelectorAll('.item').forEach(card => {
     const it = wItem(card.dataset.key); if (!it) return;
     card.querySelectorAll('[data-act="wSugg"]').forEach(b => b.setAttribute('aria-pressed', String(num(it.amount) === Number(b.dataset.v))));
+    const pz = card.querySelector('.payer'); if (pz && S.c.prepaidOn) pz.innerHTML = payerSeg(it);
   });
 }
 document.addEventListener('click', e => {
@@ -1443,20 +1607,33 @@ document.addEventListener('visibilitychange', async () => {
   if (document.hidden) { hiddenAt = Date.now(); return; }
   if (!hiddenAt || Date.now() - hiddenAt < 30000) return;
   hiddenAt = 0;
-  if (!S.data || S.layers.length || S.writing || !$('lock').hidden) return;
-  try { setData(await api('getData')); }
-  catch (e) { if (isPinErr(e)) { setPin(''); showLock(errText(e)); } }
+  if (!S.data || S.layers.length || S.writing || S.refreshing || !$('lock').hidden) return;
+  const job = api('getData'); S.refreshing = job.then(() => {}, () => {});
+  try { setData(await job); }
+  catch (e) { if (isPinErr(e)) pinFail(e); }
+  finally { S.refreshing = null; }
 });
 
 /* ---------- start ---------- */
 async function boot() {
-  try { setData(await api('getData')); }
+  const job = api('getData'); S.refreshing = job.then(() => {}, () => {});
+  try { setData(await job); }
   catch (e) {
-    if (isPinErr(e)) { setPin(''); showLock(errText(e)); }
+    if (isPinErr(e)) pinFail(e);
     else if (isLinkErr(e)) showLock(errText(e), { link: true });
     else if (IS_APP && !S.data) showLock(errText(e), { retry: true });
+    else if (S.stale) toast('Chưa tải được bản mới, đang xem dữ liệu lúc ' + hhmm(S.snapAt) + '. ' + errText(e), { err: true });
     else toast('Không tải được dữ liệu: ' + errText(e), { err: true });
+  } finally { S.refreshing = null; }
+}
+/* mở app: hiện ngay dữ liệu lần trước (nếu có) rồi tải bản mới */
+function start() {
+  const snap = loadSnap();
+  if (snap) {
+    try { S.stale = true; S.snapAt = snap.t; setData(snap.d, true); }
+    catch (e) { S.stale = false; S.data = null; dropSnap(); }
   }
+  boot();
 }
 /* có mạng lại khi đang ở màn hình báo mất mạng: tự tải lại */
 window.addEventListener('online', () => { if (!S.data && $('retryForm') && !$('lock').hidden) A.retryBoot(); });
@@ -1467,15 +1644,12 @@ window.addEventListener('appinstalled', () => { S.installEvt = null; if (S.data)
 (function readSetupLink() {
   const m = /[#&]api=([^&]+)/.exec(location.hash || '');
   if (!m) return;
-  try { const u = decodeURIComponent(m[1]); if (validLink(u)) store(LINK_KEY, u); } catch (e) { /* bỏ qua */ }
+  try { const u = decodeURIComponent(m[1]); if (validLink(u)) { if (u !== apiLink()) dropSnap(); store(LINK_KEY, u); } } catch (e) { /* bỏ qua */ }
   try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { /* bỏ qua */ }
 })();
 applyTheme();
 if (typeof PROTOTYPE !== 'undefined' && PROTOTYPE) boot();
-else if (!getPin()) showLock(); else boot();
-</script>
-<script>
-if ('serviceWorker' in navigator) window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+else if (NO_PIN ? IS_APP && !validLink(apiLink()) : !getPin()) showLock(); else start();
 </script>
 </body>
 </html>
