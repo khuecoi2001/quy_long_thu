@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<base target="_top">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quỹ Lông thủ</title>
+<meta name="description" content="Quản lý quỹ CLB cầu lông Lông thủ NSMO">
+<meta name="theme-color" content="#F1F4F0">
+<meta name="color-scheme" content="light dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Quỹ Lông thủ">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"></noscript>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <style>
 /* Layout: phone app shell. Sticky header, one scrolling view, fixed tab bar with a raised
    centre action; sheets rise from the bottom, the 3-step "Thêm buổi" flow covers the screen. */
@@ -424,6 +434,8 @@ textarea.input{min-height:200px;resize:vertical;line-height:1.5;font-size:15px}
 <div id="layers"></div>
 <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 <div id="lock" class="lock" hidden></div>
+<script>const PWA = true;
+</script>
 <script>
 /* Quản lý quỹ — giao diện dùng chung cho các quỹ cầu lông. Dữ liệu tiền tính bằng nghìn đồng (k). */
 'use strict';
@@ -1650,6 +1662,9 @@ window.addEventListener('appinstalled', () => { S.installEvt = null; if (S.data)
 applyTheme();
 if (typeof PROTOTYPE !== 'undefined' && PROTOTYPE) boot();
 else if (NO_PIN ? IS_APP && !validLink(apiLink()) : !getPin()) showLock(); else start();
+</script>
+<script>
+if ('serviceWorker' in navigator) window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
 </script>
 </body>
 </html>
