@@ -88,11 +88,40 @@
   --shuttle-ink:#2A1C00; --fab-glow:rgba(0,0,0,.4);
   --scrim:rgba(0,0,0,.62); --shadow:0 1px 0 rgba(255,255,255,.03);
 }
+/* Bảng màu hồng pastel (bản đặc biệt, chỉ có chế độ sáng): <html data-palette="pink" data-theme="light">. */
+:root[data-palette="pink"]{
+  --bg:#FFF5F9; --surface-2:#FCEAF2; --line:#F6DCE8;
+  --fg:#24182B; --fg-2:#4E3D57; --muted:#76627F;
+  --accent:#D42A78; --accent-strong:#B01F63; --accent-ink:#FFFFFF; --accent-soft:#FFE3EF;
+  --hero:linear-gradient(135deg,#FFC9DF 0%,#FFDCEA 48%,#E6D6FF 100%); --hero-2:rgba(255,255,255,.62);
+  --hero-ink:#2A1430; --hero-muted:#7A4E7F; --shuttle:#C92A72;
+  --shuttle-ink:#FFFFFF; --fab-glow:rgba(212,42,120,.35);
+  --scrim:rgba(36,24,43,.40); --shadow:0 1px 2px rgba(120,40,90,.05),0 10px 30px rgba(120,40,90,.09);
+}
+:root[data-palette="pink"] .hero{box-shadow:0 12px 30px -12px rgba(212,42,120,.35)}
+/* Bản hồng: thay sân cầu ở thẻ quỹ bằng họa tiết trái tim và lấp lánh, chấm tròn thành trái tim */
+:root[data-palette="pink"]{--hero-art:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 210 190'%3E%3Cpath d='M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21z' fill='%23FFFFFF' fill-opacity='0.6' transform='translate%28108 14%29 rotate%2812 12 12%29 scale%282.7%29'/%3E%3Cpath d='M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21z' fill='%23FF6FAE' fill-opacity='0.38' transform='translate%2852 66%29 rotate%28-16 12 12%29 scale%281.5%29'/%3E%3Cpath d='M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21z' fill='%23FFFFFF' fill-opacity='0.75' transform='translate%28150 98%29 rotate%2818 12 12%29 scale%281.05%29'/%3E%3Cpath d='M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21z' fill='%23FF6FAE' fill-opacity='0.38' transform='translate%2898 136%29 rotate%28-8 12 12%29 scale%280.75%29'/%3E%3Cpath d='M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21z' fill='%23FF6FAE' fill-opacity='0.38' transform='translate%28178 20%29 rotate%28-20 12 12%29 scale%280.6%29'/%3E%3Cpath d='M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0z' fill='%23FFFFFF' fill-opacity='0.9' transform='translate%2840 14%29 rotate%280 12 12%29 scale%280.75%29'/%3E%3Cpath d='M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0z' fill='%23FFFFFF' fill-opacity='0.9' transform='translate%28176 62%29 rotate%280 12 12%29 scale%280.55%29'/%3E%3Cpath d='M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0z' fill='%23FFFFFF' fill-opacity='0.9' transform='translate%28132 128%29 rotate%280 12 12%29 scale%280.5%29'/%3E%3Cpath d='M12 0C13 8 16 11 24 12 16 13 13 16 12 24 11 16 8 13 0 12 8 11 11 8 12 0z' fill='%23FFFFFF' fill-opacity='0.9' transform='translate%2886 46%29 rotate%280 12 12%29 scale%280.38%29'/%3E%3C/svg%3E")}
+:root[data-palette="pink"] .hero .court{display:none}
+:root[data-palette="pink"] .hero::before{content:"";position:absolute;top:-8px;right:-12px;width:214px;height:194px;pointer-events:none;
+  background:var(--hero-art) no-repeat center/contain;animation:heartFloat 7s ease-in-out infinite}
+@keyframes heartFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(-2deg)}}
+@media (prefers-reduced-motion: reduce){:root[data-palette="pink"] .hero::before{animation:none}}
+:root[data-palette="pink"] .hero .shuttle-dot{width:11px;height:10px;border-radius:0;vertical-align:-1px;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") no-repeat center/contain;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21s-7.5-4.6-10-9.3C.3 8.3 2.2 4 6.3 4c2.3 0 3.9 1.3 5.7 3.4C13.8 5.3 15.4 4 17.7 4 21.8 4 23.7 8.3 22 11.7 19.5 16.4 12 21 12 21z'/%3E%3C/svg%3E") no-repeat center/contain}
 .swatch{width:14px;height:14px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.pal-row{display:flex;gap:8px;align-items:stretch;margin-top:0}
+.pal-row .seg{flex:1;min-width:0}
+.pal-special{flex:none;width:46px;border:0;border-radius:12px;display:grid;place-items:center;color:#D42A78;
+  background:linear-gradient(135deg,#FFC9DF,#FFDCEA 50%,#E6D6FF);box-shadow:inset 0 0 0 1px rgba(212,42,120,.18)}
+.pal-special svg{width:20px;height:20px}
+.pal-special[aria-pressed="true"]{box-shadow:inset 0 0 0 2px #D42A78,0 4px 12px -4px rgba(212,42,120,.5)}
+.seg button:disabled{opacity:.45}
+@media (max-width:360px){.seg.pal button{font-size:13px;gap:5px;padding:0 4px}.seg.pal .swatch{width:11px;height:11px}.pal-special{width:42px}}
 .seg.pal button{display:flex;align-items:center;justify-content:center;gap:8px}
 
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
+html{background:var(--bg);-webkit-text-size-adjust:100%;text-size-adjust:100%}   /* nền khi kéo quá đầu/cuối trang trên iPhone */
 body{margin:0;background:var(--bg);color:var(--fg);font:400 15px/1.45 var(--font);
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -194,7 +223,7 @@ button{cursor:pointer}
 .input::placeholder{color:var(--muted);opacity:.65;font-weight:400}
 .money input::placeholder{font-weight:600;opacity:.4}
 .input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
-textarea.input{min-height:200px;resize:vertical;line-height:1.5;font-size:15px}
+textarea.input{min-height:200px;resize:vertical;line-height:1.5;font-size:16px}
 .money{position:relative}
 .money input{font-size:28px;font-weight:700;padding-right:44px;min-height:60px;letter-spacing:-.5px}
 .money .unit{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-weight:700;font-size:20px;color:var(--muted)}
@@ -402,7 +431,7 @@ textarea.input{min-height:200px;resize:vertical;line-height:1.5;font-size:15px}
 .lock p{margin:0;color:var(--hero-muted);font-size:14px}
 .lock .input{background:var(--hero-2);border-color:transparent;color:var(--hero-ink);text-align:center;font-size:18px}
 .lock .btn{background:var(--shuttle);color:var(--shuttle-ink)}
-.lock .lock-link{font-size:14px;text-align:left}
+.lock .lock-link{font-size:16px;text-align:left}   /* iPhone tự phóng to khi gõ vào ô chữ nhỏ hơn 16px */
 .lock .lock-link::placeholder,.lock .input::placeholder{color:var(--hero-muted);opacity:.8}
 .lock-msg{color:var(--shuttle)!important;font-weight:600}
 .lock-link-btn{background:none;border:0;color:var(--hero-muted);font-weight:600;font-size:14px;min-height:44px;text-decoration:underline;text-underline-offset:3px}
@@ -447,7 +476,8 @@ const CFG = Object.assign({
   sheetName: 'Lông thủ NSMO',        // tên file Google Sheet (hiện ở Cài đặt)
   storePrefix: '',                   // tiền tố bộ nhớ, để 2 app trên cùng tên miền không lẫn nhau
   noPin: false,                      // true = mở app không cần mã truy cập (Code.gs đặt requirePin: false)
-  palette: 'green',                  // màu mặc định: 'green' (xanh lá) hoặc 'blue' (xanh dương)
+  palette: 'green',                  // màu mặc định: 'green' (xanh lá), 'blue' (xanh dương), 'pink' (hồng phấn)
+  palettes: ['blue', 'green'],       // các màu cho chọn trong Cài đặt
   theme: 'auto'                      // chế độ mặc định: 'auto' | 'light' | 'dark'
 }, typeof APP_CONFIG !== 'undefined' ? APP_CONFIG : {});
 const FUND = 'Quỹ';
@@ -660,6 +690,12 @@ async function call(fn, args, ok) {
     return null;
   } finally { S.writing = false; }
 }
+/* app vừa tự cập nhật theo phần nhập tay trong tab Smash: báo ngắn cho biết (và báo dòng nào chưa đưa vào được) */
+function syncNote(d) {
+  if (!d) return;
+  if (d.warnings && d.warnings.length) toast((d.synced ? d.synced + ' ' : '') + d.warnings.join(' '), { err: true });
+  else if (d.synced) toast(d.synced);
+}
 function setData(d, fromSnap) {
   S.data = d; S.c = compute(d);
   if (!fromSnap) { S.stale = false; saveSnap(d); }
@@ -684,11 +720,14 @@ function getPin() { return store(PIN_KEY) || S.pinMem || ''; }
 function setPin(p) { S.pinMem = p; store(PIN_KEY, p || null); }
 
 /* ---------- theme ---------- */
-const PALETTES = { blue: ['Xanh dương', '#1F5FBF', '#EEF3F9', '#0A0F17'], green: ['Xanh lá', '#0B7A4B', '#F1F4F0', '#0A100D'] };
+const PALETTES = { blue: ['Xanh dương', '#1F5FBF', '#EEF3F9', '#0A0F17'], green: ['Xanh lá', '#0B7A4B', '#F1F4F0', '#0A100D'], pink: ['Hồng', 'linear-gradient(135deg,#FF8FC0,#C9A8FF)', '#FFF5F9', '#FFF5F9'] };
+const SPECIAL = { pink: true };   // màu đặc biệt: nút nhỏ riêng, chỉ có chế độ sáng
+const GIFT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>';   // hộp quà: nút mở màu đặc biệt
+const PAL_LIST =(Array.isArray(CFG.palettes) ? CFG.palettes : ['blue', 'green']).filter(k => PALETTES[k]);
 function curTheme() { const t = store('qlt_theme') || CFG.theme; return ['auto', 'light', 'dark'].indexOf(t) >= 0 ? t : 'auto'; }
-function curPalette() { const p = store('qlt_palette') || CFG.palette; return PALETTES[p] ? p : 'green'; }
+function curPalette() { const p = store('qlt_palette') || CFG.palette; return PAL_LIST.indexOf(p) >= 0 || p === CFG.palette ? (PALETTES[p] ? p : 'green') : 'green'; }
 function applyTheme() {
-  const t = curTheme(), p = curPalette(), root = document.documentElement;
+  const p = curPalette(), t = SPECIAL[p] ? 'light' : curTheme(), root = document.documentElement;   // màu đặc biệt chỉ có bản sáng
   if (t === 'auto') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', t);
   if (p === 'green') root.removeAttribute('data-palette'); else root.setAttribute('data-palette', p);
   const dark = t === 'dark' || (t === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
@@ -844,13 +883,15 @@ function vMembers() {
 
 /* ---------- Cài đặt ---------- */
 function vSettings() {
-  const t = curTheme(), pal = curPalette(), b = S.data.settings && S.data.settings.bank;
+  const pal = curPalette(), sp = !!SPECIAL[pal], t = sp ? 'light' : curTheme(), b = S.data.settings && S.data.settings.bank;
   const bankName = b ? (BANKS.find(x => x[0] === b.bin) || [0, 'Mã ' + b.bin])[1] : '';
+  const main = PAL_LIST.filter(k => !SPECIAL[k]), extra = PAL_LIST.filter(k => SPECIAL[k]);
   return '<div class="group"><h2>Giao diện</h2><div class="card"><div class="seg" role="group" aria-label="Chế độ hiển thị">' +
-    [['auto', 'Tự động'], ['light', 'Sáng'], ['dark', 'Tối']].map(o => '<button data-act="theme" data-t="' + o[0] + '" aria-pressed="' + (t === o[0]) + '">' + o[1] + '</button>').join('') +
-    '</div><p class="hint" style="margin:8px 2px 14px">Tự động: theo chế độ sáng/tối của điện thoại.</p>' +
-    '<div class="seg pal" role="group" aria-label="Màu giao diện">' +
-    Object.keys(PALETTES).map(k => '<button data-act="palette" data-p="' + k + '" aria-pressed="' + (pal === k) + '"><span class="swatch" style="background:' + PALETTES[k][1] + '"></span>' + PALETTES[k][0] + '</button>').join('') +
+    [['auto', 'Tự động'], ['light', 'Sáng'], ['dark', 'Tối']].map(o => '<button data-act="theme" data-t="' + o[0] + '" aria-pressed="' + (t === o[0]) + '"' + (sp && o[0] !== 'light' ? ' disabled' : '') + '>' + o[1] + '</button>').join('') +
+    '</div><p class="hint" style="margin:8px 2px 14px">' + (sp ? 'Màu ' + esc(PALETTES[pal][0].toLowerCase()) + ' là bản đặc biệt, chỉ có chế độ sáng.' : 'Tự động: theo chế độ sáng/tối của điện thoại.') + '</p>' +
+    '<div class="pal-row"><div class="seg pal" role="group" aria-label="Màu giao diện">' +
+    main.map(k => '<button data-act="palette" data-p="' + k + '" aria-pressed="' + (pal === k) + '"><span class="swatch" style="background:' + PALETTES[k][1] + '"></span>' + PALETTES[k][0] + '</button>').join('') +
+    '</div>' + extra.map(k => '<button class="pal-special" data-act="palette" data-p="' + k + '" aria-pressed="' + (pal === k) + '" aria-label="Màu ' + esc(PALETTES[k][0].toLowerCase()) + ' (bản đặc biệt)" title="Màu ' + esc(PALETTES[k][0].toLowerCase()) + '">' + GIFT + '</button>').join('') +
     '</div></div></div>' +
     '<div class="group"><h2>Nhận tiền</h2><div class="card set-list"><button class="setrow" data-act="bank"><span class="ic">' + ic('bank') + '</span><span class="main"><span class="t">Tài khoản nhận quỹ</span>' +
     '<span class="s">' + (b ? esc(bankName + ' · ' + b.acct) : 'Chưa nhập · cần để tạo mã QR') + '</span></span>' + ic('right', 'chev') + '</button></div></div>' +
@@ -903,7 +944,7 @@ function toast(msg, o) {
   o = o || {};
   const t = $('toast');
   clearTimeout(S.toastT);
-  const ms = o.undo ? 8000 : o.err ? 5000 : 2600;
+  const ms = o.undo ? 8000 : Math.min(10000, Math.max(o.err ? 5000 : 2600, String(msg).length * 55));   // câu dài thì hiện lâu hơn
   t.className = 'toast' + (o.err ? ' err' : '');
   t.innerHTML = '<span class="msg">' + esc(msg) + '</span>' + (o.undo ? '<button data-act="undo">Hoàn tác</button><span class="timer" style="animation-duration:' + ms + 'ms"></span>' : '');
   t.hidden = false;
@@ -1621,7 +1662,7 @@ document.addEventListener('visibilitychange', async () => {
   hiddenAt = 0;
   if (!S.data || S.layers.length || S.writing || S.refreshing || !$('lock').hidden) return;
   const job = api('getData'); S.refreshing = job.then(() => {}, () => {});
-  try { setData(await job); }
+  try { const d = await job; setData(d); syncNote(d); }
   catch (e) { if (isPinErr(e)) pinFail(e); }
   finally { S.refreshing = null; }
 });
@@ -1629,7 +1670,7 @@ document.addEventListener('visibilitychange', async () => {
 /* ---------- start ---------- */
 async function boot() {
   const job = api('getData'); S.refreshing = job.then(() => {}, () => {});
-  try { setData(await job); }
+  try { const d = await job; setData(d); syncNote(d); }
   catch (e) {
     if (isPinErr(e)) pinFail(e);
     else if (isLinkErr(e)) showLock(errText(e), { link: true });
@@ -1658,6 +1699,12 @@ window.addEventListener('appinstalled', () => { S.installEvt = null; if (S.data)
   if (!m) return;
   try { const u = decodeURIComponent(m[1]); if (validLink(u)) { if (u !== apiLink()) dropSnap(); store(LINK_KEY, u); } } catch (e) { /* bỏ qua */ }
   try { history.replaceState(null, '', location.pathname + location.search); } catch (e) { /* bỏ qua */ }
+})();
+/* iPhone/iPad: không tự phóng to khi chạm vào ô nhập (vẫn phóng to bằng hai ngón được), mở lại app là về đúng cỡ */
+(function iosViewport() {
+  const ios = /iP(hone|od|ad)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const m = document.querySelector('meta[name="viewport"]');
+  if (ios && m) m.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover');
 })();
 applyTheme();
 if (typeof PROTOTYPE !== 'undefined' && PROTOTYPE) boot();
